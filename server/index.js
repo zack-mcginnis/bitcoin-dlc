@@ -6,7 +6,17 @@ it may be necessary to streamline the DLC setup process.
 
 2. Oracle creates an event which contains all possible outcomes, plus a nonce
 
-3. 
+
+... 
 
 
 */
+
+const express = require('express');
+const app = express();
+
+app.get('/', function (req, res) {
+  res.send('hello world')
+})
+
+app.listen(3000)
