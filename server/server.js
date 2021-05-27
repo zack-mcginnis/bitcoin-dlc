@@ -1,11 +1,16 @@
 import express from "express";
-const app = express();
+
+import { getBlockchainInfo, getNetworkInfo } from "./routes/RpcInterface.js";
 
 import { Participant } from "./Participant.js";
 import { Oracle } from "./Oracle.js";
 import { FundingTxn } from "./FundingTxn.js";
 
 import { verifySignature } from "./utils.js";
+
+const app = express();
+
+// app.use("/api", rpcMethods);
 
 app.get('/', (req, res) => {
   // create participants
@@ -27,7 +32,10 @@ app.get('/', (req, res) => {
 
   const oracleSig = oracle.sign(fundingTxn)
   verifySignature(oracle.publicKey, oracleSig, fundingTxn)
-
 })
+
+app.get('/network', (req, res) => getNetworkInfo());
+app.get('/blockchain', (req, res) => getBlockchainInfo());
+
 
 app.listen(3000)
