@@ -27,7 +27,6 @@ export class Participant {
         const signer = crypto.createSign('RSA-SHA256');// Returns the signature in output_format which can be 'binary', 'hex' or 'base64'
         signer.update(transaction.toString())
         const signature = signer.sign(this.privateKey, 'hex')
-        console.log(`Digital Signature: created for ${this.name}`, signature);
         return signature
     }
 
