@@ -1,22 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
 
+import { test, getBlockchainInfo, getNetworkInfo } from "./services/DLCService"
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={test}>
+          Get test signature data
+        </button>
+        <button onClick={getBlockchainInfo}>
+          Get blockchain info
+        </button>
+        <button onClick={getNetworkInfo}>
+          Get network info
+        </button>
       </header>
     </div>
   );
