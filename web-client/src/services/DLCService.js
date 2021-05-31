@@ -1,5 +1,13 @@
+import { LedgerWebHid, LedgerWebUsb } from "./wallets/ledger";
+
 export const test = async () => {
     const url = `${process.env.REACT_APP_API_BASE_URL}/test`;
+    // TODO: wait for device selection
+    const ledger = new LedgerWebUsb();
+    await ledger.init();
+    // get device pub key
+    const publicKey = await ledger.getPublicKey();
+    console.log(publicKey)
 
     try {
         const result = await fetch(url);
