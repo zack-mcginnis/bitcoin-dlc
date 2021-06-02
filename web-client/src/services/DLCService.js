@@ -1,4 +1,4 @@
-import { LedgerWebHid, LedgerWebUsb } from "./wallets/ledger";
+import { LedgerWebUsb } from "./wallets/ledger";
 
 export const test = async () => {
     const url = `${process.env.REACT_APP_API_BASE_URL}/test`;

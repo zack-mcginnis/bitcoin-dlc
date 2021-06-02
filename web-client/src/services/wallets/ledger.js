@@ -1,5 +1,4 @@
 import TransportWebUSB from "@ledgerhq/hw-transport-webusb";
-// import TransportWebHID from "@ledgerhq/hw-transport-webhid";
 import AppBtc from "@ledgerhq/hw-app-btc";
 
 export class LedgerWebUsb {
