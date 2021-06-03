@@ -23,4 +23,17 @@ export class LedgerWebUsb {
             return err;
         }
     }
+
+    async signMessage(message) {
+        const path = "44'/60'/0'/0'/0";
+        const messageBuffer = Buffer.from(message).toString("hex");
+        try {
+            const result = await this.btc.signMessageNew_async(path, messageBuffer)
+            const v = result['v'] + 27 + 4;
+            const signature = Buffer.from(v.toString(16) + result['r'] + result['s'], 'hex').toString('base64');
+            console.log("Signature : " + signature);
+        } catch (err) {
+            return err;
+        }
+    }
 }
