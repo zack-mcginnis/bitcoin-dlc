@@ -2,33 +2,41 @@ import { Participant } from "./Participant.js";
 import { Oracle } from "./Oracle.js";
 import { FundingTxn } from "./FundingTxn.js";
 import { verifySignature } from "../shared/utils.js";
+import bitcoin from 'bitcoinjs-lib';
+import bitcoinMessage from 'bitcoinjs-message';
 
 import { BitcoinNode } from "../shared/bitcoin-core-config.js"
 
 export const testSignatures = async (res) => {
-    // create participants
-    const alice = new Participant("alice");
-    const bob = new Participant("bob");
 
-    // create oracle
-    const oracle = new Oracle("oracle");
+    const publicKey = "xpub6DB2Np8LP1kFvyWjZWaMEHHJqjNR4hq8QZUPqHztpUPPKDDSNcVEUmEqGNJ8SbpQixixaCYWzFN98wZa6qo15xqVXydL4dvNSzQSSH1ngg2"
+    const signature = "H1xqB5/BKHGI5szgWsJuuNARN9TQXleq5dCLuVn3Y6PLVYbtPWi5WWcUakxpzZQkrAblbEVKIRAQhnt87rL/MhA="
+    const message = "Test Sig 123"
 
-    // create transaction
-    const fundingTxn = new FundingTxn("100", "vnks3nlskvn", "lknvsadcjnsd")
+    console.log(bitcoinMessage.verify(message, publicKey, signature))
+    // // create participants
+    // const alice = new Participant("alice");
+    // const bob = new Participant("bob");
 
-    // sign transaction
-    const aliceSig = alice.sign(fundingTxn)
-    verifySignature(alice.publicKey, aliceSig, fundingTxn)
+    // // create oracle
+    // const oracle = new Oracle("oracle");
 
-    const bobSig = bob.sign(fundingTxn)
-    verifySignature(bob.publicKey, bobSig, fundingTxn)
+    // // create transaction
+    // const fundingTxn = new FundingTxn("100", "vnks3nlskvn", "lknvsadcjnsd")
 
-    const oracleSig = oracle.sign(fundingTxn)
-    verifySignature(oracle.publicKey, oracleSig, fundingTxn)
+    // // sign transaction
+    // const aliceSig = alice.sign(fundingTxn)
+    // verifySignature(alice.publicKey, aliceSig, fundingTxn)
 
-    await createPsbt();
+    // const bobSig = bob.sign(fundingTxn)
+    // verifySignature(bob.publicKey, bobSig, fundingTxn)
 
-    res.send({aliceSig, bobSig, oracleSig});
+    // const oracleSig = oracle.sign(fundingTxn)
+    // verifySignature(oracle.publicKey, oracleSig, fundingTxn)
+
+    // await createPsbt();
+
+    // res.send({aliceSig, bobSig, oracleSig});
 }
 
 export const createPsbt = async () => {
